@@ -23,6 +23,8 @@ app.listen(port, () => {
     console.log(`Serveur listening at http://localhost:${port}`);
 });
 
+//let body = document.getElementsById("playerTabList");
+
 class Player 
 {
     constructor(name) {
@@ -36,17 +38,17 @@ let playerList = [];
 function Addplayer(player)
 {
     playerList[playerList.length] = player;
-}
+};
 
 app.get('/', (req, res, next) => {
-    res.render('index.ejs', {joueurs: joueurs});
-}); 
+    res.render('index.ejs', {playerList: playerList});
+})
 
 app.post('/', (req, res, next) => {
-    Addplayer(new Player(req.body.name));
-    console.log(playerList);        // Affiche le tableau dans VS
+    Addplayer(new Player(req.body.name));   // Ajoute un joueur
+    console.log(playerList);                // Affiche le tableau dans VS
 
-    res.render('index.ejs');        // Actualise la page
+    res.redirect('/');                      // Actualise la page 
 });
 
 app.use((req, res, next) => {       // Implémentation page 404
