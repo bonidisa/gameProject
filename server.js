@@ -8,11 +8,11 @@ app.set('view engine', 'ejs');
 
 app.use('/', express.static(__dirname + '/www')); // redirect root
 
-app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));  // redirect bootstrap JS
-app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));        // redirect JS jQuery
-app.use('/js', express.static(__dirname + '/node_modules/popper.js/dist/umd')); // redirect popper
-app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));// redirect bootstrap CSS
-app.use('/views', express.static(__dirname + '/views'));                        // redirect ejs
+app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));      // redirect bootstrap JS
+app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));            // redirect JS jQuery
+app.use('/js', express.static(__dirname + '/node_modules/popper.js/dist/umd'));     // redirect popper
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));    // redirect bootstrap CSS
+app.use('/views', express.static(__dirname + '/views'));                            // redirect ejs
 
 // Body parser
 app.use(bodyparser.urlencoded({extended: false}));
