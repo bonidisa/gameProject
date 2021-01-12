@@ -13,6 +13,7 @@ app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));        
 app.use('/js', express.static(__dirname + '/node_modules/popper.js/dist/umd')); // redirect popper
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));// redirect bootstrap CSS
 app.use('/views', express.static(__dirname + '/views'));                        // redirect ejs
+app.use('/www', express.static(__dirname + '/www'));  
 
 // Body parser
 app.use(bodyparser.urlencoded({extended: false}));
