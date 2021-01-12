@@ -1,3 +1,24 @@
+<%- include('header');%>
+
 <h1>Lancez votre dé</h1>
 
-<p><%= dice.valeur %></p>
+<%  let de = 0; %>
+<% do{ %>
+<%    de = Math.round(Math.random()*6) + 1;%>
+<% }while(de > 6);%>
+
+<div>
+    <input class="toggable" type="text" name="result" placeholder="<%= de%>" disabled>
+</div>
+
+<input id="submit_dice" type="button" value="Lancer !">
+
+<script>
+$(document).ready(function(){
+    $(".toggable").toggle();
+    $("#submit_dice").click(function(){
+        $(".toggable").toggle();
+  });
+});
+</script>
+<%- include('footer');%>

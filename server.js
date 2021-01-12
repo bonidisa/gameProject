@@ -28,9 +28,7 @@ let monobjet = {
     valeur : 10
 }
 
-let dice = {
-    valeur : Math.random()*6 + 1
-}
+
 
 app.get('/', (req, res, next) => {
 /* Envoyer un message */
@@ -52,6 +50,8 @@ app.post('/form', (req, res, next) => {
         res.render('form.ejs');
 });
 
+let dice;
+
 app.get('/dice', (req, res, next) => {
     /* Envoyer un message */
         //res.send('Bonjour Mathis !');
@@ -59,7 +59,8 @@ app.get('/dice', (req, res, next) => {
         //res.sendFile('www/index.html');
     /* Envoyer un fichier avec ejs */
         res.render('dice.ejs', {dice: dice});
-    }); 
+}); 
+ 
 
 app.use((req, res, next) => {       // Implémentation page 404
     res.status(404).render('error.ejs');
