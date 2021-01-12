@@ -23,29 +23,30 @@ app.listen(port, () => {
     console.log(`Serveur listening at http://localhost:${port}`);
 });
 
-let monobjet = {
-    nom : "monobjet",
-    valeur : 10
+class Player 
+{
+    constructor(name) {
+        this.name = name;
+        this.score = 0;
+    }
+}
+
+let playerList = [];
+
+function Addplayer(player)
+{
+    playerList[playerList.length] = player;
 }
 
 app.get('/', (req, res, next) => {
-/* Envoyer un message */
-    //res.send('Bonjour Mathis !');
-/* Envoyer un fichier */
-    //res.sendFile('www/index.html');
-/* Envoyer un fichier avec ejs */
-    res.render('index.ejs', {monobjet: monobjet});
+    res.render('index.ejs', {joueurs: joueurs});
 }); 
 
-app.get('/form', (req, res, next) => {
-/* Envoyer une autre page avec ejs */
-    res.render('form.ejs');
-});
+app.post('/', (req, res, next) => {
+    Addplayer(new Player(req.body.name));
+    console.log(playerList);        // Affiche le tableau dans VS
 
-app.post('/form', (req, res, next) => {
-    /* Créer une requête  post avec ejs */
-        console.log(req.body.name);
-        res.render('form.ejs');
+    res.render('index.ejs');        // Actualise la page
 });
 
 app.use((req, res, next) => {       // Implémentation page 404
