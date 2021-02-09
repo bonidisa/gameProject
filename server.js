@@ -50,7 +50,7 @@ app.get("/createplayers", (req, res, next) => {
 });
 
 app.get("/dice", (req, res, next) => {
-  res.render("dice.ejs", { dice: dice });
+  res.render("dice.ejs", { playerList: playerList });
 });
 
 app.post("/createplayers", (req, res, next) => {

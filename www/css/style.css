@@ -19,3 +19,11 @@ body {
 .fontNumber {
   font-size: 10rem;
 }
+
+#scores{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
