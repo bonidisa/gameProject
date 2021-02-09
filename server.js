@@ -2,7 +2,6 @@ let express = require("express");
 let bodyparser = require("body-parser");
 let app = express();
 let port = 3000;
-let dice;
 
 //Préparation du serveur
 app.set("view engine", "ejs");
