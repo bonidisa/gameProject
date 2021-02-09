@@ -41,7 +41,7 @@ function Addplayer(player)
 };
 
 app.get('/', (req, res, next) => {
-    res.render('index.ejs', {playerList: playerList});
+    res.render('createplayers.ejs', {playerList: playerList});
 })
 
 app.post('/', (req, res, next) => {
@@ -51,6 +51,6 @@ app.post('/', (req, res, next) => {
     res.redirect('/');                      // Actualise la page 
 });
 
-app.use((req, res, next) => {       // Implémentation page 404
+app.use((req, res, next) => {               // Implémentation page 404
     res.status(404).render('error.ejs');
 });
