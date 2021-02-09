@@ -35,12 +35,7 @@ app.get("/", (req, res, next) => {
   /* Envoyer un fichier */
   //res.sendFile('www/index.html');
   /* Envoyer un fichier avec ejs */
-  res.render("index.ejs", { monobjet: monobjet });
-});
-
-app.get("/form", (req, res, next) => {
-  /* Envoyer une autre page avec ejs */
-  res.render("form.ejs");
+  res.render("rules.ejs", { monobjet: monobjet });
 });
 
 app.use((req, res, next) => {
