@@ -2,6 +2,7 @@ let express = require("express");
 let bodyparser = require("body-parser");
 let app = express();
 let port = 3000;
+let dice;
 
 //Préparation du serveur
 app.set("view engine", "ejs");
@@ -23,8 +24,6 @@ app.listen(port, () => {
   console.log(`Serveur listening at http://localhost:${port}`);
 });
 
-//let body = document.getElementsById("playerTabList");
-
 class Player {
   constructor(name) {
     this.name = name;
@@ -39,21 +38,22 @@ function Addplayer(player) {
 }
 
 app.get("/", (req, res, next) => {
-  res.render("index.ejs", { playerList: playerList });
+  res.render("index.ejs");
 });
-
-app.post("/", (req, res, next) => {
+app.get("/rules", (req, res, next) => {
+  res.render("rules.ejs");
+});
+app.get("/createplayers", (req, res, next) => {
+  res.render("createplayers.ejs", { playerList: playerList });
+});
+app.get("/dice", (req, res, next) => {
+  res.render("dice.ejs", { dice: dice });
+});
+app.post("/createplayers", (req, res, next) => {
   Addplayer(new Player(req.body.name)); // Ajoute un joueur
   console.log(playerList); // Affiche le tableau dans VS
 
-  res.redirect("/"); // Actualise la page
-});
-
-let dice;
-
-app.get("/dice", (req, res, next) => {
-  /* Envoyer un fichier avec ejs */
-  res.render("dice.ejs", { dice: dice });
+  res.redirect("/createplayers"); // Actualise la page
 });
 
 app.use((req, res, next) => {
