@@ -51,6 +51,14 @@ app.post('/', (req, res, next) => {
     res.redirect('/');                      // Actualise la page 
 });
 
-app.use((req, res, next) => {               // Implémentation page 404
+let dice;
+
+app.get('/dice', (req, res, next) => {
+    /* Envoyer un fichier avec ejs */
+        res.render('dice.ejs', {dice: dice});
+}); 
+ 
+
+app.use((req, res, next) => {       // Implémentation page 404
     res.status(404).render('error.ejs');
 });

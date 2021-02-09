@@ -1,0 +1,27 @@
+<%- include('header');%>
+
+<h1 class="row justify-content-center">Lancez votre dé</h1>
+
+<%  let de = 0; %>
+<% do{ %>
+<%    de = Math.round(Math.random()*6) + 1;%>
+<% }while(de > 6);%>
+
+    <div class="row justify-content-center card-body toggable">
+        <p class="row justify-content-center"><%= de%></p>
+    </div>
+
+<div class="row justify-content-center">
+    <input id="submit_dice" class="btn btn-primary" type="button" value="Lancer !">
+</div>
+
+<script>
+$(document).ready(function(){
+    $(".toggable").toggle();
+    $("#submit_dice").click(function(){
+        $(".toggable").toggle();
+        $(this).prop("disabled",true);
+    });
+});
+</script>
+<%- include('footer');%>
