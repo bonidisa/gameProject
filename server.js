@@ -39,7 +39,7 @@ function Addplayer(player) {
 }
 
 app.get("/", (req, res, next) => {
-  res.render("createplayers.ejs", { playerList: playerList });
+  res.render("index.ejs", { playerList: playerList });
 });
 
 app.post("/", (req, res, next) => {
