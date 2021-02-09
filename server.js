@@ -40,18 +40,21 @@ function Addplayer(player) {
 app.get("/", (req, res, next) => {
   res.render("index.ejs");
 });
+
 app.get("/rules", (req, res, next) => {
   res.render("rules.ejs");
 });
+
 app.get("/createplayers", (req, res, next) => {
   res.render("createplayers.ejs", { playerList: playerList });
 });
+
 app.get("/dice", (req, res, next) => {
   res.render("dice.ejs", { dice: dice });
 });
+
 app.post("/createplayers", (req, res, next) => {
   Addplayer(new Player(req.body.name)); // Ajoute un joueur
-  console.log(playerList); // Affiche le tableau dans VS
 
   res.redirect("/createplayers"); // Actualise la page
 });

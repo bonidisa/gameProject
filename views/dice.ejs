@@ -2,26 +2,56 @@
 
 <h1 class="row justify-content-center">Lancez votre dé</h1>
 
-<% let de = 0; %> <% do{ %> <% de = Math.round(Math.random()*6) + 1;%> <%
-}while(de > 6);%>
+<ul id="scores"></ul>
+
+<script>
+        let round = 0; //initialisation des rounds
+        let de = 0; //initialisation du dé
+        let writeScores = document.getElementById("scores"); //initialisation du li qui écrira les scores
+
+        let tab = '<%- JSON.stringify(playerList) %>'; //récupération du tableau des joueurs en local
+        let players = JSON.parse(tab);                 //Transformation du json en tableau
+
+        /*for(player of players){
+            console.log(player.name);
+        }*/
+
+        function AddScore(){
+            if(players.length > round){             // si le jeu n'est pas fini
+                console.log("round : "+round);      // on affiche le round dans la console et on continue
+
+                players[round].score = de;          // On ajoute le score du dé au joueur du round
+                
+                let enfant = document.createElement("li");          // On affiche le score du dé du joueur
+                enfant.innerHTML = "Joueur : "+players[round].name+" : "+players[round].score;
+                writeScores.appendChild(enfant);
+                round++;          // On passe au joueur d'après
+            }
+            else{
+                alert("Terminé");
+                return;           // Sinon on sort de la boucle
+            }
+        }
+
+        function Throw(){          // Fonction de lancement de dés
+            do {
+                de = Math.round(Math.random()*6)+1;
+            }while(de > 6);
+            console.log(de);
+            AddScore();
+        }
+</script>
 
 <div class="row justify-content-center card-body toggable">
-  <p class="row justify-content-center align-items-center fontNumber">
-    <%= de%>
-  </p>
+    <p class="row justify-content-center"></p>
 </div>
 
 <div class="row justify-content-center">
-  <input id="submit_dice" class="btn btn-info" type="button" value="Lancer !" />
+    <button id="submit_dice" class="btn btn-primary" type="button" onclick="Throw()"> Lancer !</button>
 </div>
 
+
 <script>
-  $(document).ready(function () {
-    $(".toggable").toggle();
-    $("#submit_dice").click(function () {
-      $(".toggable").toggle();
-      $(this).prop("disabled", true);
-    });
-  });
 </script>
+
 <%- include('footer');%>
